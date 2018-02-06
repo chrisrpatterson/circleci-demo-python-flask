@@ -1,0 +1,15 @@
+resources:
+  containers:
+    - container: browsers
+      image: circleci/python:3.6.2-stretch-browsers
+      options: -e FLASK_CONFIG=testing -e TEST_DATABASE_URL=postgresql://ubuntu@localhost/circle_test?sslmode?disable
+    - container: database
+      image: circleci/postgres:9.6.5-alpine-ram
+      options: -e POSTGRES_USER=ubuntu -e POSTGRES_DB=circle_test -e POSTGRES_PASSWORD=""
+phases:
+  - phase:
+    steps:
+    - script: |
+        pip install -r requirements/dev.txt
+      container: browsers
+

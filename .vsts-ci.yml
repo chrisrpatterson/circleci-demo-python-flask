@@ -10,7 +10,7 @@ phases:
   - phase: test
     steps:
     - script: |
-        ps -a
+        /docker-entrypoint.sh &
       container: database
     - script: |
         curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.3.jar
@@ -27,6 +27,7 @@ phases:
     - script: |
         . venv/bin/activate
         python manage.py test
+      container: browsers
       displayName: Run Tests
     - script: |
         ps -a

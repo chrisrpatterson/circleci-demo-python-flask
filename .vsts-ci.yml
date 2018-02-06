@@ -10,6 +10,26 @@ phases:
   - phase: test
     steps:
     - script: |
+        ps -a
+      container: database
+    - script: |
+        curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.3.jar
+      container: browsers
+      name: Download Selenium
+    - script: |
+        java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log &
+    - script: |
+        python3 -m venv venv
+        . venv/bin/activate
         pip install -r requirements/dev.txt
       container: browsers
+      name: Install Python deps in a venv
+    - script: |
+        . venv/bin/activate
+        python manage.py test
+      name: Run Tests
+    - script: |
+        ps -a
+      container: database
+
 

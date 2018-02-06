@@ -17,7 +17,7 @@ phases:
       container: browsers
       displayName: Download Selenium
     - script: |
-        java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log &
+        nohup java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log &
       container: browsers
       displayName: Start Selenium
     - script: |

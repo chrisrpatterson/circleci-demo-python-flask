@@ -4,8 +4,8 @@ resources:
       image: circleci/python:3.6.2-stretch-browsers
       options: -e FLASK_CONFIG=testing -e TEST_DATABASE_URL=postgresql://ubuntu@localhost/circle_test?sslmode?disable -u 0
     - container: database
-      image: circleci/postgres:9.6.5-alpine-ram
-      options: -e POSTGRES_USER=ubuntu -e POSTGRES_DB=circle_test -e POSTGRES_PASSWORD=""
+      image: circleci/postgres:9.6.5-ram
+      options: -e POSTGRES_USER=ubuntu -e POSTGRES_DB=circle_test -e POSTGRES_PASSWORD="" -u 0
 phases:
   - phase: test
     steps:

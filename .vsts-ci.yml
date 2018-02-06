@@ -18,6 +18,8 @@ phases:
       displayName: Download Selenium
     - script: |
         java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log &
+      container: browsers
+      displayName: Start Selenium
     - script: |
         python3 -m venv venv
         . venv/bin/activate
